@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import ProductsRegister from "./components/ProductsRegister";
+import ProductList from './components/ProductList'
+import CategoryRegister from './components/CategoryRegister'
+import CategoryList from './components/CategoryList'
+import { useState } from "react";
+import { Container } from "@mui/material";
+import Menu from "./components/Menu";
+import './style.css'
 
-function App() {
+
+export default function App() {
+
+  const [pageSelected, setPageSelected] = useState('ProductList')
+
+  const renderPage = () => {
+    switch (pageSelected) {
+      case 'ProductRegister':
+        return <ProductsRegister texto={'Cadastro de Produtos'} />
+      case 'CategoryList':
+        return <CategoryList texto={'Listagem de Categorias'} />
+      case 'CategoryRegister':
+        return <CategoryRegister texto={'Cadastro de Categoria'} />
+      default:
+        return <ProductList texto={'Listagem de Produtos'} />
+    }
+  }
+
+  const onNavigate = (page) => setPageSelected(page)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <Menu 
+        onChangePage={page => onNavigate(page)}
+      />
+
+      <Container>
+
+        {renderPage()}
+
+      </Container>
+
     </div>
   );
 }
-
-export default App;
