@@ -14,10 +14,10 @@ export default function App() {
 
   const renderPage = () => {
     switch (pageSelected) {
-      case 'ProductRegister':
-        return <ProductsRegister texto={'Cadastro de Produtos'} />
       case 'CategoryList':
         return <CategoryList texto={'Listagem de Categorias'} />
+      case 'ProductRegister':
+        return <ProductsRegister texto={'Cadastro de Produtos'} />
       case 'CategoryRegister':
         return <CategoryRegister texto={'Cadastro de Categoria'} />
       default:
